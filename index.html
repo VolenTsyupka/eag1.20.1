@@ -1,34 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Password Gate</title>
-  <style>
-    #content { display: none; }
-  </style>
-</head>
-<body>
-  <div id="login">
-    <h2>Enter Password</h2>
-    <input type="password" id="pw">
-    <button onclick="checkPassword()">Submit</button>
-  </div>
+<script>
+async function checkPassword() {
+  const pw = document.getElementById("pw").value;
 
-  <div id="content"></div>
+  if (pw !== "eag") {
+    alert("Incorrect password");
+    return;
+  }
 
-  <script>
-    async function checkPassword() {
-      const pw = document.getElementById('pw').value;
-      if (pw === 'eag') {
-        const response = await fetch('fhd76s238nhfd.html');
-        const text = await response.text();
-        document.getElementById('content').innerHTML = text;
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-      } else {
-        alert('Incorrect password');
-      }
+  // Load the HTML file
+  const response = await fetch("fhd76s238nhfd.html");
+  const html = await response.text();
+
+  // Insert HTML
+  const contentDiv = document.getElementById("content");
+  contentDiv.innerHTML = html;
+
+  // Hide login
+  document.getElementById("login").style.display = "none";
+  contentDiv.style.display = "block";
+
+  // Extract and run scripts
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  const scripts = temp.querySelectorAll("script");
+
+  scripts.forEach(oldScript => {
+    const newScript = document.createElement("script");
+
+    if (oldScript.src) {
+      // External script file
+      newScript.src = oldScript.src;
+    } else {
+      // Inline script
+      newScript.textContent = oldScript.textContent;
     }
-  </script>
-</body>
-</html>
+
+    document.body.appendChild(newScript);
+  });
+}
+</script>
