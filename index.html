@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Password Protected</title>
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("pw").value;
+      if (password === "mypassword123") {
+        window.location.href = "protected.html";
+      } else {
+        alert("Incorrect password");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Enter Password</h2>
+  <input type="password" id="pw">
+  <button onclick="checkPassword()">Submit</button>
+</body>
+</html>
